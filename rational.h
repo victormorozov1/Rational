@@ -1,11 +1,4 @@
-int NOD(int a, int b){
-    while (b){
-        int ost = a % b;
-        a = b;
-        b = ost;
-    }
-    return a;
-}
+#include <algorithm>
 
 class Rational{
 public:
@@ -52,7 +45,7 @@ public:
             numerator *= -1;
         }
 
-        int nod = NOD(abs(numerator), abs(denominator));
+        int nod = std::__gcd(abs(numerator), abs(denominator));
         numerator /= nod;
         denominator /= nod;
 
