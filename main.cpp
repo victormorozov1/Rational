@@ -15,6 +15,22 @@ class Rational{
 public:
     int numerator, denominator;
 
+    Rational (int _numerator, int _denominator){
+        numerator = _numerator;
+        denominator = _denominator;
+        standart_view();
+    }
+
+    Rational(int num){
+        numerator = num;
+        denominator = 1;
+    }
+
+    Rational(){
+        numerator = 0;
+        denominator = 1;
+    }
+
     Rational* standart_view(){
         if (denominator < 0){
             denominator *= -1;
@@ -26,12 +42,6 @@ public:
         denominator /= nod;
 
         return this;
-    }
-
-    Rational (int _numerator, int _denominator){
-        numerator = _numerator;
-        denominator = _denominator;
-        standart_view();
     }
 
     Rational operator+(Rational other) {
@@ -65,6 +75,7 @@ std::ostream& operator<< (std::ostream &out, const Rational &num)
 
 int main() {
     Rational r(-9, 2), t(6, 3);
-    cout << r / t;
+    Rational c = 7;
+    cout << c;
     return 0;
 }
