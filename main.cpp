@@ -171,7 +171,7 @@ istream& operator>> (istream &in, Rational &num)
     }
 
     num.numerator = numerator * numerator_m;
-    num.denominator = denominator * denominator_m;
+    num.denominator = denominator?denominator * denominator_m:1;
     num.standart_view();
 
     return in;
