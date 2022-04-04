@@ -44,10 +44,12 @@ public:
 
     void SetNumerator(int _num){
         numerator = _num;
+        standart_view();
     }
 
     void SetDenominator(int _denum){
         denominator = _denum;
+        standart_view();
     }
 
     Rational* standart_view(){
@@ -78,21 +80,25 @@ public:
 //    Rational operator+(Rational other)   Что тут писать
 
     Rational operator++(int _){
+        auto ret = *this;
         *this += 1;
-        return *this - 1;
+        standart_view();
+        return ret;
     }
 
     Rational operator++(){
-        return *this += 1;
+        return *(*this += 1).standart_view();
     }
 
     Rational operator--(int _){
+        auto ret = *this;
         *this -= 1;
-        return *this + 1;
+        standart_view();
+        return ret;
     }
 
     Rational operator--(){
-        return *this -= 1;
+        return *(*this -= 1).standart_view();
     }
 
     Rational operator*(Rational other){
