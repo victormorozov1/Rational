@@ -20,7 +20,7 @@ public:
         SetDenominator(_denominator);
     }
 
-    Rational(int num){
+    Rational(int num){ // NOLINT
         numerator = num;
         denominator = 1;
     }
