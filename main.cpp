@@ -16,12 +16,8 @@ public:
     int numerator, denominator;
 
     Rational (int _numerator, int _denominator){
-        numerator = _numerator;
-        denominator = _denominator;
-        if (-denominator == 0){
-            ///
-        }
-        standart_view();
+        SetNumerator(_numerator);
+        SetDenominator(_denominator);
     }
 
     Rational(int num){
@@ -48,6 +44,8 @@ public:
     }
 
     void SetDenominator(int _denum){
+        ///if (!_denum)
+        ///    throw RationalDivisionByZero{};  // Это нужно будет вставить при отправке
         denominator = _denum;
         standart_view();
     }
