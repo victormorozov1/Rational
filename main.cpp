@@ -15,25 +15,31 @@ class Rational{
 public:
     int numerator, denominator;
 
-    Rational* short_fraction(){
+    Rational* standart_view(){
+        if (denominator < 0){
+            denominator *= -1;
+            numerator *= -1;
+        }
+
         int nod = NOD(numerator, denominator);
         numerator /= nod;
         denominator /= nod;
+
         return this;
     }
 
     Rational (int _numerator, int _denominator){
         numerator = _numerator;
         denominator = _denominator;
-        short_fraction();
+        standart_view();
     }
 
     Rational operator+(Rational& other) {
-        return *Rational(numerator * other.denominator + other.numerator * denominator, denominator * other.denominator).short_fraction();
+        return *Rational(numerator * other.denominator + other.numerator * denominator, denominator * other.denominator).standart_view();
     }
 
     Rational operator-(Rational& other) {
-        return *Rational(numerator * other.denominator - other.numerator * denominator, denominator * other.denominator).short_fraction();
+        return *Rational(numerator * other.denominator - other.numerator * denominator, denominator * other.denominator).standart_view();
     }
 
 };
