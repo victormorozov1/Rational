@@ -53,7 +53,7 @@ public:
     }
 
     Rational operator+(Rational other) {
-        return *Rational(numerator * other.denominator + other.numerator * denominator, denominator * other.denominator).standart_view();
+        return Rational(numerator * other.denominator + other.numerator * denominator, denominator * other.denominator);
     }
 
     Rational operator-() {
@@ -89,11 +89,11 @@ public:
     }
 
     Rational operator*(Rational other){
-        return *Rational(numerator * other.numerator, denominator * other.denominator).standart_view();
+        return Rational(numerator * other.numerator, denominator * other.denominator);
     }
 
     Rational operator/(Rational other){
-        return *(*this * Rational(other.denominator, other.numerator)).standart_view();
+        return (*this * Rational(other.denominator, other.numerator));
     }
 
     Rational operator+=(Rational other){
