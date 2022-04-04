@@ -32,6 +32,10 @@ public:
         return *Rational(numerator * other.denominator + other.numerator * denominator, denominator * other.denominator).short_fraction();
     }
 
+    Rational operator-(Rational& other) {
+        return *Rational(numerator * other.denominator - other.numerator * denominator, denominator * other.denominator).short_fraction();
+    }
+
 };
 
 std::ostream& operator<< (std::ostream &out, const Rational &num)
@@ -44,6 +48,6 @@ std::ostream& operator<< (std::ostream &out, const Rational &num)
 
 int main() {
     Rational r(9, 2), t(6, 3);
-    cout << r + t;
+    cout << r - t;
     return 0;
 }
