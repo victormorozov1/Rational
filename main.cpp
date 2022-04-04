@@ -42,8 +42,16 @@ public:
         return Rational(this->numerator * -1, this->denominator);
     }
 
-    Rational operator-(Rational& other) {
+    Rational operator-(Rational other) {
         return *this + (-other);
+    }
+
+    Rational operator*(Rational other){
+        return *Rational(numerator * other.numerator, denominator * other.denominator).standart_view();
+    }
+
+    Rational operator/(Rational other){
+        return *(*this * Rational(other.denominator, other.numerator)).standart_view();
     }
 };
 
@@ -57,6 +65,6 @@ std::ostream& operator<< (std::ostream &out, const Rational &num)
 
 int main() {
     Rational r(-9, 2), t(6, 3);
-    cout << r + t;
+    cout << r / t;
     return 0;
 }
