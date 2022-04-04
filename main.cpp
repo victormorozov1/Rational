@@ -75,6 +75,26 @@ public:
         return *this + (-other);
     }
 
+//    Rational operator+(Rational other)   Что тут писать
+
+    Rational operator++(int _){
+        *this += 1;
+        return *this - 1;
+    }
+
+    Rational operator++(){
+        return *this += 1;
+    }
+
+    Rational operator--(int _){
+        *this -= 1;
+        return *this + 1;
+    }
+
+    Rational operator--(){
+        return *this -= 1;
+    }
+
     Rational operator*(Rational other){
         return *Rational(numerator * other.numerator, denominator * other.denominator).standart_view();
     }
@@ -115,11 +135,8 @@ std::ostream& operator<< (std::ostream &out, const Rational &num)
 int main() {
     Rational r(-9, 2), t(6, 3);
     Rational c = 11;
-    c /= (r + t) * c;
-    cout << -t << " " << -c << " " << -r << endl;
-    t -= r;
-    cout << -t << " " << -c << " " << -r << endl;
-    r += r * t / c;
-    cout << -t << " " << -c << " " << -r << endl;
+    r++;
+    c--;
+    cout << ++r << " " << --c;
     return 0;
 }
