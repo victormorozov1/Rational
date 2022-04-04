@@ -128,6 +128,14 @@ public:
         *this = *this / other;
         return *this;
     }
+
+    bool operator==(Rational other){
+        return numerator == other.numerator && denominator == other.denominator;
+    }
+
+    bool operator!=(Rational other){
+        return !(*this == other);
+    }
 };
 
 std::ostream& operator<< (std::ostream &out, const Rational &num)
@@ -140,9 +148,7 @@ std::ostream& operator<< (std::ostream &out, const Rational &num)
 
 int main() {
     Rational r(-9, 2), t(6, 3);
-    Rational c = 11;
-    r++;
-    c--;
-    cout << ++r << " " << --c;
+    Rational c = 3;
+    cout << (c == ++t);
     return 0;
 }
