@@ -15,10 +15,11 @@ class Rational{
 public:
     int numerator, denominator;
 
-    void short_fraction(){
+    Rational* short_fraction(){
         int nod = NOD(numerator, denominator);
         numerator /= nod;
         denominator /= nod;
+        return this;
     }
 
     Rational (int _numerator, int _denominator){
@@ -27,6 +28,9 @@ public:
         short_fraction();
     }
 
+    Rational operator+(Rational& other) {
+        return *Rational(numerator * other.denominator + other.numerator * denominator, denominator * other.denominator).short_fraction();
+    }
 
 };
 
@@ -39,6 +43,7 @@ std::ostream& operator<< (std::ostream &out, const Rational &num)
 }
 
 int main() {
-
+    Rational r(9, 2), t(6, 3);
+    cout << r + t;
     return 0;
 }
