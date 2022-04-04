@@ -21,7 +21,7 @@ public:
             numerator *= -1;
         }
 
-        int nod = NOD(numerator, denominator);
+        int nod = NOD(abs(numerator), abs(denominator));
         numerator /= nod;
         denominator /= nod;
 
@@ -34,14 +34,17 @@ public:
         standart_view();
     }
 
-    Rational operator+(Rational& other) {
+    Rational operator+(Rational other) {
         return *Rational(numerator * other.denominator + other.numerator * denominator, denominator * other.denominator).standart_view();
     }
 
-    Rational operator-(Rational& other) {
-        return *Rational(numerator * other.denominator - other.numerator * denominator, denominator * other.denominator).standart_view();
+    Rational operator-() {
+        return Rational(this->numerator * -1, this->denominator);
     }
 
+    Rational operator-(Rational& other) {
+        return *this + (-other);
+    }
 };
 
 std::ostream& operator<< (std::ostream &out, const Rational &num)
@@ -53,7 +56,7 @@ std::ostream& operator<< (std::ostream &out, const Rational &num)
 }
 
 int main() {
-    Rational r(9, 2), t(6, 3);
-    cout << r - t;
+    Rational r(-9, 2), t(6, 3);
+    cout << r + t;
     return 0;
 }
