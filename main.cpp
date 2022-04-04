@@ -5,8 +5,8 @@ using namespace std;
 
 int main() {
     Rational r(-9, 2), t(6, 3);
-    Rational c = 3;
-    cin >> c;
-    cout << c;
+    Rational c = 3/4;
+    cout <<  ++c;
+
     return 0;
 }

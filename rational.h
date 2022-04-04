@@ -69,23 +69,21 @@ public:
     Rational operator++(int _){
         auto ret = *this;
         *this += 1;
-        standart_view();
         return ret;
     }
 
     Rational operator++(){
-        return *(*this += 1).standart_view();
+        return *this += 1;
     }
 
     Rational operator--(int _){
         auto ret = *this;
         *this -= 1;
-        standart_view();
         return ret;
     }
 
     Rational operator--(){
-        return *(*this -= 1).standart_view();
+        return *this -= 1;
     }
 
     Rational operator*(Rational other){
