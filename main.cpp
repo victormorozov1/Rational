@@ -138,7 +138,7 @@ public:
     }
 };
 
-std::ostream& operator<< (std::ostream &out, const Rational &num)
+ostream& operator<< (std::ostream &out, const Rational &num)
 {
     out << num.numerator;
     if (num.denominator != 1)
@@ -146,9 +146,41 @@ std::ostream& operator<< (std::ostream &out, const Rational &num)
     return out;
 }
 
+istream& operator>> (istream &in, Rational &num)
+{
+    string s;
+    in >> s;
+
+    int numerator = 0, denominator = 0, numerator_m = 1, denominator_m = 1;
+    bool one_num = true;
+    for (char c : s){
+        if (c == '/')
+            one_num = false;
+        else if (one_num) {
+            if (c == '-')
+                numerator_m *= -1;
+            else
+                numerator = numerator * 10 + (c - '0');
+        }
+        else {
+            if (c == '-')
+                denominator_m *= -1;
+            else
+                denominator = denominator * 10 + (c - '0');
+        }
+    }
+
+    num.numerator = numerator * numerator_m;
+    num.denominator = denominator * denominator_m;
+    num.standart_view();
+
+    return in;
+}
+
 int main() {
     Rational r(-9, 2), t(6, 3);
     Rational c = 3;
-    cout << (c == ++t);
+    cin >> c;
+    cout << c;
     return 0;
 }
