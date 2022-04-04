@@ -18,6 +18,9 @@ public:
     Rational (int _numerator, int _denominator){
         numerator = _numerator;
         denominator = _denominator;
+        if (-denominator == 0){
+            ///
+        }
         standart_view();
     }
 
@@ -29,6 +32,22 @@ public:
     Rational(){
         numerator = 0;
         denominator = 1;
+    }
+
+    int GetNumerator(){
+        return numerator;
+    }
+
+    int GetDenominator(){
+        return denominator;
+    }
+
+    void SetNumerator(int _num){
+        numerator = _num;
+    }
+
+    void SetDenominator(int _denum){
+        denominator = _denum;
     }
 
     Rational* standart_view(){
@@ -63,6 +82,26 @@ public:
     Rational operator/(Rational other){
         return *(*this * Rational(other.denominator, other.numerator)).standart_view();
     }
+
+    Rational operator+=(Rational other){
+        *this = *this + other;
+        return *this;
+    }
+
+    Rational operator-=(Rational other){
+        *this = *this - other;
+        return *this;
+    }
+
+    Rational operator*=(Rational other){
+        *this = *this * other;
+        return *this;
+    }
+
+    Rational operator/=(Rational other){
+        *this = *this / other;
+        return *this;
+    }
 };
 
 std::ostream& operator<< (std::ostream &out, const Rational &num)
@@ -75,7 +114,12 @@ std::ostream& operator<< (std::ostream &out, const Rational &num)
 
 int main() {
     Rational r(-9, 2), t(6, 3);
-    Rational c = 7;
-    cout << c;
+    Rational c = 11;
+    c /= (r + t) * c;
+    cout << -t << " " << -c << " " << -r << endl;
+    t -= r;
+    cout << -t << " " << -c << " " << -r << endl;
+    r += r * t / c;
+    cout << -t << " " << -c << " " << -r << endl;
     return 0;
 }
