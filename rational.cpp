@@ -5,6 +5,7 @@ Rational::Rational(int num, int d) {
   SetNumeratorDenominator(num, d);
 }
 
+
 Rational::Rational(int num) {
   numerator = num;
   denominator = 1;
@@ -89,7 +90,9 @@ std::istream &operator>>(std::istream &in, Rational &num) {
     }
   }
 
-  num.SetNumeratorDenominator(numerator * numerator_m, denominator ? denominator * denominator_m : 1);
+  num.SetNumeratorDenominator(numerator * numerator_m, denominator * denominator_m);
+
+  return in;
 
   return in;
 }
@@ -178,7 +181,7 @@ Rational Rational::operator--(int) {
 }
 
 bool Rational::operator<(const Rational &other) const {
-  return static_cast<double>(numerator) / denominator < static_cast<double>(other.numerator) / other.denominator;
+  return numerator * other.denominator < denominator * other.numerator;
 }
 
 bool Rational::operator==(const Rational &other) const {
